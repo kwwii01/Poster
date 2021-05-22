@@ -2,6 +2,8 @@
 
 <p><%= @post.body %></p>
 
+<p>By: <%= @post.author.name %></p>
+
 <ul>
   <li><%= link_to "Edit", edit_post_path(@post) %></li>
   <li><%= link_to "Destroy", post_path(@post),

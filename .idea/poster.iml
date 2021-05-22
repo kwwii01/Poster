@@ -70,6 +70,7 @@
     <orderEntry type="library" scope="PROVIDED" name="pg (v1.2.3, Remote-rbenv: ruby-2.7.3-p183) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="public_suffix (v4.0.6, Remote-rbenv: ruby-2.7.3-p183) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puma (v5.3.1, Remote-rbenv: ruby-2.7.3-p183) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pundit (v2.1.0, Remote-rbenv: ruby-2.7.3-p183) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="racc (v1.5.2, Remote-rbenv: ruby-2.7.3-p183) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v2.2.3, Remote-rbenv: ruby-2.7.3-p183) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-mini-profiler (v2.3.2, Remote-rbenv: ruby-2.7.3-p183) [gem]" level="application" />
