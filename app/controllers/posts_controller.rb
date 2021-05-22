@@ -1,8 +1,11 @@
 class PostsController < ApplicationController
   POSTS_PER_PAGE = 5
-  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+  before_action :authenticate_user!, only: %i[ new create edit update destroy]
+  before_action :set_post, only: %i[ show edit update destroy ]
 
   def index
+    authorize Post
+
     @page = params.fetch(:page, 0).to_i
 
     if @page < 0
@@ -14,14 +17,20 @@ class PostsController < ApplicationController
   end
 
   def show
+    authorize @post
+
     @post = Post.find(params[:id])
   end
 
   def new
+    authorize Post
+
     @post = Post.new
   end
 
   def create
+    authorize Post
+
     @post = Post.new(post_params)
     @post.author = current_user
 
@@ -33,10 +42,14 @@ class PostsController < ApplicationController
   end
 
   def edit
+    authorize @post
+
     @post = Post.find(params[:id])
   end
 
   def update
+    authorize @post
+
     @post = Post.find(params[:id])
 
     if @post.update(post_params)
@@ -47,6 +60,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    authorize @post
+
     @post = Post.find(params[:id])
     @post.destroy
 
@@ -54,6 +69,10 @@ class PostsController < ApplicationController
   end
 
   private
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
   def post_params
     params.require(:post).permit(:title, :body, :status)
   end
