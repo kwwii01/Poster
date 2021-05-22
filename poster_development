@@ -1,0 +1,9 @@
+\c poster_development
+\dt
+DROP_TABLE articles
+DROP_TABLE comments
+\dt
+DROP TABLE articles
+\dt
+\q
+\s poster_development
