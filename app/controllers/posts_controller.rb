@@ -1,9 +1,16 @@
 class PostsController < ApplicationController
-
+  POSTS_PER_PAGE = 5
   http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
 
   def index
-    @posts = Post.all
+    @page = params.fetch(:page, 0).to_i
+
+    if @page < 0
+      redirect_to posts_path(params[page: 0])
+    end
+
+    @posts = Post.offset(@page * POSTS_PER_PAGE).limit(POSTS_PER_PAGE)
+
   end
 
   def show
