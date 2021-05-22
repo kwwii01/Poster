@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  include Visible
   has_many :comments
 
   validates :title, presence: true
