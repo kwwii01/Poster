@@ -7,7 +7,7 @@
 </p>
 
 <p>
-  <% if comment.author == current_user || comment.author.admin? %>
+  <% if policy(comment).destroy? %>
     <%= link_to 'Delete comment', [comment.post, comment],
                 method: :delete,
                 data: { confirm: "Are you sure?" },

@@ -7,9 +7,9 @@
   <p><%= @post.body %></p>
   <p>Category: <%= link_to @post.category, posts_path(category: @post.category), class: 'btn btn-outline-dark' %></p>
 </article>
-<% if (@post.author == current_user) || @post.author.admin? %>
+<% if policy(@post).update? && policy(@post).destroy? %>
   <div class="btn-group" role="group" aria-label="Basic outlined example">
-    <%= button_to "Edit", edit_post_path(@post), method: :get, class: 'btn btn-outline-secondary' %>
+    <%= button_to "Edit", edit_post_path(@post), method: :get, class: 'btn btn-outline-secondary ms-2' %>
     <%= button_to "Delete", post_path(@post), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-outline-secondary' %>
   </div>
 <% end %>
