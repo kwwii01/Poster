@@ -8,6 +8,14 @@
   </div>
 
   <div>
+    <%= form.label :picture %>
+    <%= form.file_field :picture %>
+    <% post.errors.full_messages_for(:picture).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
     <%= form.label :body %><br>
     <%= form.text_area :body %><br>
     <% post.errors.full_messages_for(:body).each do |message| %>
@@ -18,6 +26,9 @@
   <div>
     <%= form.label :category %><br>
     <%= form.select :category, ['Scientific', 'Politics', 'TV Series', 'Anime', 'Films', 'Technologies'], selected: 'Anime' %>
+    <% post.errors.full_messages_for(:category).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
   </div>
 
   <div>

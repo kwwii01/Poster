@@ -2,6 +2,10 @@
 
 <p><%= @post.body %></p>
 
+<p>
+  <%= image_tag(@post.picture, width: 200) if @post.picture.attached? %>
+</p>
+
 <p>By: <%= @post.author.name %></p>
 
 <ul>
