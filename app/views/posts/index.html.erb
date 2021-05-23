@@ -1,18 +1,31 @@
-<h1>Posts</h1>
+<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+  <div class="col-md-6 px-0">
+    <h1 class="display-4 fst-italic"><%= Post.last.title %></h1>
+    <p class="lead mb-0">
+      <%= link_to "Continue Reading...", post_path(Post.last) , class: 'text-white fw-bold' %>
+    </p>
+  </div>
+</div>
 
-<%= form_with url: '/posts', method: :get do |form| %>
-  <%= form.select :category, ['Scientific', 'Politics', 'TV Series', 'Anime', 'Films', 'Technologies', 'All'], selected: @category %>
-  <%= form.submit "Search" %>
-<% end %>
-
-<ul>
+<div class="col-md-12 justify-content-center">
+  <h2 class="pb-4 mb-4 fst-italic border-bottom">
+    <%= @category %> Posts:
+  </h2>
   <% @posts.each do |post| %>
-    <li>
-      <%= link_to post.title, post %>
-    </li>
+    <article class="blog-post">
+      <h2 class="blog-post-title"><%= link_to post.title, post, class: 'text-decoration-none text-monospace text-dark' %></h2>
+      <p class="blog-post-meta"> <%= post.created_at %> by <strong><%= post.author.name %></strong></p>
+      <p>
+        <%= image_tag(post.picture, width: 400) if post.picture.attached? %>
+      </p>
+      <p><%= post.body %></p>
+      <p>Category: <%= link_to post.category, posts_path(category: post.category), class: 'btn btn-outline-dark' %></p>
+    </article>
+    <hr>
   <% end %>
-</ul>
 
-<%= link_to "Previous Page", posts_path(page: @page - 1, category: @category) %>
-<%= link_to "Next Page", posts_path(page: @page + 1, category: @category) %>
-<%= link_to "New Post", new_post_path %>
+  <%= link_to "Previous Page", posts_path(page: @page - 1, category: @category), class: 'text-monospace text-dark' %> |
+  <%= link_to "Next Page", posts_path(page: @page + 1, category: @category), class: 'text-monospace text-dark' %>
+</div>
+
+

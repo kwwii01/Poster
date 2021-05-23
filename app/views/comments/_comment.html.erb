@@ -1,15 +1,17 @@
 <p>
-  <strong>Commenter:</strong>
-  <%= comment.author.name %>
+  By <strong><%= comment.author.name %></strong>
 </p>
 
 <p>
-  <strong>Comment:</strong>
   <%= comment.body %>
 </p>
 
 <p>
-  <%= link_to 'Destroy Comment', [comment.post, comment],
-              method: :delete,
-              data: { confirm: "Are you sure?" } %>
+  <% if comment.author == current_user || comment.author.admin? %>
+    <%= link_to 'Delete comment', [comment.post, comment],
+                method: :delete,
+                data: { confirm: "Are you sure?" },
+                class: 'btn btn-outline-dark'%>
+  <% end %>
+  <hr>
 </p>

@@ -14,8 +14,14 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <main class="container">
+      <% if !notice.nil? %>
+        <div class="notice alert alert-success"><%= notice %></div>
+      <% end %>
+      <% if !alert.nil? %>
+        <div class="alert alert-warning"><%= alert %></div>
+      <% end %>
+      <%= yield %>
+    </main>
   </body>
 </html>

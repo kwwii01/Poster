@@ -1,21 +1,20 @@
-<h1><%= @post.title %></h1>
-
-<p><%= @post.body %></p>
-
-<p>
-  <%= image_tag(@post.picture, width: 200) if @post.picture.attached? %>
-</p>
-
-<p>By: <%= @post.author.name %></p>
-
-<ul>
-  <li><%= link_to "Edit", edit_post_path(@post) %></li>
-  <li><%= link_to "Destroy", post_path(@post),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %></li>
-</ul>
-
-<h2>Comments</h2>
+<article class="blog-post">
+  <h2 class="blog-post-title"><%= @post.title %></h2>
+  <p class="blog-post-meta"> <%= @post.created_at %> by <strong><%= @post.author.name %></strong></p>
+  <p>
+    <%= image_tag(@post.picture, width: 400) if @post.picture.attached? %>
+  </p>
+  <p><%= @post.body %></p>
+  <p>Category: <%= link_to @post.category, posts_path(category: @post.category), class: 'btn btn-outline-dark' %></p>
+</article>
+<% if (@post.author == current_user) || @post.author.admin? %>
+  <div class="btn-group" role="group" aria-label="Basic outlined example">
+    <%= button_to "Edit", edit_post_path(@post), method: :get, class: 'btn btn-outline-secondary' %>
+    <%= button_to "Delete", post_path(@post), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-outline-secondary' %>
+  </div>
+<% end %>
+<hr>
+<h2>Comments:</h2>
 <%= render @post.comments %>
 
 
