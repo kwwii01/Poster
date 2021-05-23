@@ -7,13 +7,19 @@ class PostsController < ApplicationController
     authorize Post
 
     @page = params.fetch(:page, 0).to_i
+    @category = params.fetch(:category, "All")
 
-    if @page < 0
-      redirect_to posts_path(params[page: 0])
+    if @category == "All"
+      if @page < 0
+        redirect_to posts_path(page: 0)
+      end
+      @posts = Post.offset(@page * POSTS_PER_PAGE).limit(POSTS_PER_PAGE)
+    else
+      if @page < 0
+        redirect_to posts_path(page: 0, category: @category)
+      end
+        @posts = Post.where(category: @category).offset(@page * POSTS_PER_PAGE).limit(POSTS_PER_PAGE)
     end
-
-    @posts = Post.offset(@page * POSTS_PER_PAGE).limit(POSTS_PER_PAGE)
-
   end
 
   def show

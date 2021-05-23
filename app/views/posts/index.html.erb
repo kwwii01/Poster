@@ -1,4 +1,9 @@
-<h1>Post</h1>
+<h1>Posts</h1>
+
+<%= form_with url: '/posts', method: :get do |form| %>
+  <%= form.select :category, ['Scientific', 'Politics', 'TV Series', 'Anime', 'Films', 'Technologies', 'All'], selected: @category %>
+  <%= form.submit "Search" %>
+<% end %>
 
 <ul>
   <% @posts.each do |post| %>
@@ -8,6 +13,6 @@
   <% end %>
 </ul>
 
-<%= link_to "Previous Page", posts_path(page: @page - 1), {:disabled => true} %>
-<%= link_to "Next Page", posts_path(page: @page + 1) %>
+<%= link_to "Previous Page", posts_path(page: @page - 1, category: @category) %>
+<%= link_to "Next Page", posts_path(page: @page + 1, category: @category) %>
 <%= link_to "New Post", new_post_path %>
