@@ -1,10 +1,12 @@
 <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-  <div class="col-md-6 px-0">
-    <h1 class="display-4 fst-italic"><%= Post.last.title %></h1>
-    <p class="lead mb-0">
-      <%= link_to "Continue Reading...", post_path(Post.last) , class: 'text-white fw-bold' %>
-    </p>
-  </div>
+  <% if !Post.last.nil? %>
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 fst-italic"><%= Post.last.title %></h1>
+      <p class="lead mb-0">
+        <%= link_to "Continue Reading...", post_path(Post.last) , class: 'text-white fw-bold' %>
+      </p>
+    </div>
+  <% end %>
 </div>
 
 <div class="col-md-12 justify-content-center">
