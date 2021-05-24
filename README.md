@@ -1,25 +1,13 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 # Poster
+This is ruby on rails blog, created as control work for Programming in the Internet subject by Yurii Birban PZ-25
+
+Implemented features:
+  * Getting started - 5
+  * Authentification (devise gem) - 2
+  * Authorization (pundit gem) - 3 + admin mode, that can edit/delete any posts & comments - 1
+  * Category filtering and ordering by posting date - 2
+  * Pagination (without gems) - 2
+  * image upload (active-storage) - 2 + s3 upload in production - 2
+  * Heroku deploy (http://kwwiiposter.herokuapp.com/) - 3
+
+Sum : 5 + 2 + 3 + 1 + 2 + 2 + 2 + 2 + 3 = 22
