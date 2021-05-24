@@ -11,6 +11,10 @@
   <h2 class="pb-4 mb-4 fst-italic border-bottom">
     <%= @category %> Posts:
   </h2>
+  <h3 class="pb-4 mb-4 fst-italic border-bottom">
+    Order: <%= link_to "Newest", posts_path(sort: 'desc', category: @category), class: 'text-dark' %>
+    <%= link_to "Oldest", posts_path(sort: 'asc', category: @category), class: 'text-dark' %>
+  </h3>
   <% @posts.each do |post| %>
     <article class="blog-post">
       <h2 class="blog-post-title"><%= link_to post.title, post, class: 'text-decoration-none text-monospace text-dark' %></h2>
@@ -24,8 +28,8 @@
     <hr>
   <% end %>
 
-  <%= link_to "Previous Page", posts_path(page: @page - 1, category: @category), class: 'text-monospace text-dark' %> |
-  <%= link_to "Next Page", posts_path(page: @page + 1, category: @category), class: 'text-monospace text-dark' %>
+  <%= link_to "Previous Page", posts_path(page: @page - 1, category: @category, sort: @sortorder), class: 'text-monospace text-dark' %> |
+  <%= link_to "Next Page", posts_path(page: @page + 1, category: @category, sort: @sortorder), class: 'text-monospace text-dark' %>
 </div>
 
 

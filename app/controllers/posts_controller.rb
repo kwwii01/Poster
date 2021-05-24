@@ -8,17 +8,20 @@ class PostsController < ApplicationController
 
     @page = params.fetch(:page, 0).to_i
     @category = params.fetch(:category, "All")
+    @sortorder = params.fetch(:sort, 'desc')
+    @query = 'created_at ' + @sortorder
+
 
     if @category == "All"
       if @page < 0
         redirect_to posts_path(page: 0)
       end
-      @posts = Post.offset(@page * POSTS_PER_PAGE).limit(POSTS_PER_PAGE)
+      @posts = Post.order(@query).offset(@page * POSTS_PER_PAGE).limit(POSTS_PER_PAGE)
     else
       if @page < 0
         redirect_to posts_path(page: 0, category: @category)
       end
-        @posts = Post.where(category: @category).offset(@page * POSTS_PER_PAGE).limit(POSTS_PER_PAGE)
+        @posts = Post.order(@query).where(category: @category).offset(@page * POSTS_PER_PAGE).limit(POSTS_PER_PAGE)
     end
   end
 
