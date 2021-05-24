@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one_attached :picture, dependent: :destroy
 
-  VALID_CATEGORIES = ['Scientific', 'Politics', 'TV Series', 'Anime', 'Films', 'Technologies', 'Music']
+  VALID_CATEGORIES = ['Scientific', 'Politics', 'TV Series', 'Anime', 'Films', 'Technologies', 'Music', 'Other', 'Sport']
 
   validates :title, presence: true
   validates :body, presence: true, length: { minimum: 10 }

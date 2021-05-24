@@ -25,7 +25,7 @@
 
   <div class="mb-3">
     <%= form.label :category, class: 'form-label' %><br>
-    <%= form.select :category, ['Scientific', 'Politics', 'TV Series', 'Anime', 'Films', 'Technologies', 'Music'],
+    <%= form.select :category, ['Scientific', 'Politics', 'TV Series', 'Anime', 'Films', 'Technologies', 'Music', 'Sport', 'Other'],
                     selected: 'Scientific', class: 'form-select' %>
     <% post.errors.full_messages_for(:category).each do |message| %>
       <div><%= message %></div>
