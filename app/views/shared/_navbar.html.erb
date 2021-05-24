@@ -11,6 +11,10 @@
         <li><a href="https://github.com/kwwiiGod/Poster" class="nav-link px-2 text-white">Github</a></li>
       </ul>
 
+      <%= form_with url: search_posts_path, method: :get, class: 'col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3' do %>
+        <%= search_field_tag :search, params[:search], placeholder: "Search...", class: 'form-control form-control-dark' %>
+      <% end %>
+
       <div class="text-end">
         <span class="navbar-text">Welcome, <%= current_user.present? ? current_user.name : "Guest" %></span>
         <% if user_signed_in? %>

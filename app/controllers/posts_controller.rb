@@ -25,6 +25,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def search
+    if params[:search].blank?
+      redirect_to root_path
+    else
+      @parameter = params[:search].downcase
+      @posts = Post.all.where("lower(body) LIKE :search", search: "%#{@parameter}%")
+    end
+  end
+
   def show
     authorize @post
 
