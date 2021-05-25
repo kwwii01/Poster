@@ -10,5 +10,7 @@ Implemented features:
   * image upload (active-storage) - 2 + s3 upload in production - 2
   * Heroku deploy (http://kwwiiposter.herokuapp.com/) - 3
   * Search posts - 2
+Additional: 
+  * User profile with all his posts 
 
 Sum : 5 + 2 + 3 + 1 + 2 + 2 + 2 + 2 + 3 + 2 = 24
