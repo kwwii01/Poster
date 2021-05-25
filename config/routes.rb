@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get '/posts/search' => 'posts#search', :as => 'search_posts'
 
+  get '/users/show' => 'user#show', :as => 'show_users'
+
   resources :posts do
     resources :comments
   end

@@ -16,7 +16,13 @@
       <% end %>
 
       <div class="text-end">
-        <span class="navbar-text">Welcome, <%= current_user.present? ? current_user.name : "Guest" %></span>
+        <span class="navbar-text">Welcome,
+          <% if user_signed_in? %>
+            <%= link_to current_user.name, show_users_path(id: current_user.id), class: 'text-white' %>
+          <% else %>
+            Guest
+          <% end %>
+        </span>
         <% if user_signed_in? %>
           <%= link_to "Sign out", destroy_user_session_path, class: 'btn btn-outline-light me-2', method: :delete %>
         <% else %>

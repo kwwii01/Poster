@@ -5,15 +5,19 @@
   <% @posts.each do |post| %>
     <article class="blog-post">
       <h2 class="blog-post-title"><%= link_to post.title, post, class: 'text-decoration-none text-monospace text-dark' %></h2>
-      <p class="blog-post-meta"> <%= post.created_at %> by <strong><%= post.author.name %></strong></p>
+      <p class="blog-post-meta"> <%= post.created_at %> by
+        <strong><%= link_to post.author.name, show_users_path(id: post.author.id), class: 'text-dark' %></strong>
+      </p>
       <p>
         <%= image_tag(post.picture, width: 400) if post.picture.attached? %>
       </p>
       <p><%= post.body %></p>
       <p>Category: <%= link_to post.category, posts_path(category: post.category), class: 'btn btn-outline-dark mr-4' %>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
-          <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
-        </svg> <%= post.comments.count %>
+        <a href="/posts/<%= post.id %>#comments" class="text-decoration-none text-dark">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
+            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+          </svg>
+        </a> <%= post.comments.count %>
       </p>
     </article>
     <hr>

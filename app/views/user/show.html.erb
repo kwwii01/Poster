@@ -1,23 +1,8 @@
-<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-  <% if !Post.last.nil? %>
-    <div class="col-md-6 px-0">
-      <h1 class="display-4 fst-italic"><%= Post.last.title %></h1>
-      <p class="lead mb-0">
-        <%= link_to "Continue Reading...", post_path(Post.last) , class: 'text-white fw-bold' %>
-      </p>
-    </div>
-  <% end %>
-</div>
-
 <div class="col-md-12 justify-content-center">
   <h2 class="pb-4 mb-4 fst-italic border-bottom">
-    <%= @category %> Posts:
+    <%= @user.name %>'s posts:
   </h2>
-  <h3 class="pb-4 mb-4 fst-italic border-bottom">
-    Order: <%= link_to "Newest", posts_path(sort: 'desc', category: @category), class: 'text-dark' %>
-    <%= link_to "Oldest", posts_path(sort: 'asc', category: @category), class: 'text-dark' %>
-  </h3>
-  <% @posts.each do |post| %>
+  <% @user.posts.each do |post| %>
     <article class="blog-post">
       <h2 class="blog-post-title"><%= link_to post.title, post, class: 'text-monospace text-dark' %></h2>
       <p class="blog-post-meta"> <%= post.created_at %> by
@@ -32,14 +17,9 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
             <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
           </svg>
-        </a><%= post.comments.count %>
+        </a> <%= post.comments.count %>
       </p>
     </article>
     <hr>
   <% end %>
-
-  <%= link_to "Previous Page", posts_path(page: @page - 1, category: @category, sort: @sortorder), class: 'text-monospace text-dark' %> |
-  <%= link_to "Next Page", posts_path(page: @page + 1, category: @category, sort: @sortorder), class: 'text-monospace text-dark' %>
 </div>
-
-
